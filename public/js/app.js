@@ -6,14 +6,26 @@ const dropdownMenu = document.querySelectorAll(".dropdown-menu");
 const navBar = document.querySelector(".navbar");
 
 btnOpen.addEventListener("click", () => {
-  nav.classList.remove("hidden");
+  nav.classList.toggle("hidden");
   body.style.backgroundColor = "rgba(0,0,0,0.5)";
 });
 
 btnClose.addEventListener("click", () => {
-  nav.classList.add("hidden");
+  nav.classList.toggle("hidden");
   body.style.backgroundColor = "";
 });
+
+body.addEventListener("click", (event) => {
+  if (!nav.contains(event.target) && !btnOpen.contains(event.target)) {
+    nav.classList.add("hidden");
+    body.style.backgroundColor = "initial";
+  }
+});
+
+// btnClose.addEventListener("click", () => {
+//   nav.classList.add("hidden");
+//   body.style.backgroundColor = "";
+// });
 
 navBar.addEventListener("click", (event) => {
   const target = event.target.closest(".nav-link");
